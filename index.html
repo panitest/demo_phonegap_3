@@ -44,8 +44,8 @@ and (max-width : 320px) {
 }
 #app{position:relative; width:100%; height:100%; height:0; visibility:hidden}
 #tap{position:absolute; width:100%; height:100%; background: url(images/app_4g_home_Loader.png) center center no-repeat #0999B7; background-size:contain;  left:0; top:0; z-index:100;}
-#terminos{ width:90%;height:100%; background:#E5E5E5; margin:auto; background:#fff; margin-top:0}
-#text_terms{ width:90%; height:70%; margin:auto; position:relative;  overflow:auto; background:#005474;  font-family:movistar_headlineregular;   color:#FFF; font-size:10px; padding:10px}
+#terminos{ width:90%;height:auto; background:#E5E5E5; margin:auto; background:#fff; margin-top:0}
+#text_terms{ width:90%; height:auto; margin:auto; position:relative;  overflow:auto; background:#005474;  font-family:movistar_headlineregular;   color:#FFF; font-size:10px; padding:10px}
 #title4{ width:90%; padding:0 ;  font-family:movistar_headlineregular; padding-top:20px;  padding-bottom:10px;  color:#0F5C84; font-size:14px; margin:auto }
 
 ::-webkit-scrollbar{
@@ -77,9 +77,12 @@ and (max-width : 320px) {
 	border-radius: 4px;
 	font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000;
 }
-#pase{ position:relative; top:110px;height: 100%; box-sizing:border-box; /*padding-top:110px;*/ background:url(images/app4ghomeA.png) center top no-repeat #D0D0D0; background-size:contain; width:100%; height:0; visibility:hidden}
-#map-canvas{ width:100%;height: 100%; box-sizing:border-box; /*padding-top:110px;*/ position:relative; top:110px;}
-#cobertura{ position:relative; top:110px; height: 100%; box-sizing:border-box; /*padding-top:110px;*/ background:url(images/app4gMAPAA.png) center top no-repeat #D0D0D0; background-size:contain;  height:0; visibility:hidden}
+#pase{ position:relative; top:110px;height: 100%; box-sizing:border-box;  background:url(images/app4ghomeA.png) center top no-repeat #D0D0D0; background-size:contain; width:100%; height:0; visibility:hidden;-moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;}
+#map-canvas{ width:100%;height: 100%; box-sizing:border-box; position:relative; top:110px;-moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;}
+#cobertura{ position:relative; top:110px; height: 100%; box-sizing:border-box; background:url(images/app4gMAPAA.png) center top no-repeat #D0D0D0; background-size:contain;  height:0; visibility:hidden;-moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box;}
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
 
@@ -345,7 +348,7 @@ function mostrarMapa(){
 	$('subnavelement3').className='';
 	$('map-canvas').style.visibility='visible';
 	
-	$('map-canvas').style.height='100%';
+	$('map-canvas').style.height=(document.documentElement.clientHeight-110)+'px';
 	$('map-canvas').style.boxSizing='border-box';
 	//$('map-canvas').style.paddingTop='110px';
 	
@@ -370,7 +373,7 @@ function ShowPase(){
 	$('map-canvas').style.height='0';
 	
 	
-	$('pase').style.height='100%';
+	$('pase').style.height=(document.documentElement.clientHeight-110)+'px';
 	$('pase').style.boxSizing='border-box';
 	//$('pase').style.paddingTop='110px';
 	
@@ -383,7 +386,7 @@ function ShowPase(){
 
 function ShowCobertura(){
 	
-	$('cobertura').style.height='100%';
+	$('cobertura').style.height=(document.documentElement.clientHeight-110)+'px';
 	$('cobertura').style.boxSizing='border-box';
 	//$('cobertura').style.paddingTop='110px';
 	
@@ -417,6 +420,7 @@ DR(
 				if(localStorage.getItem('acepto')=='ok'){
 						$('terminos').style.height='0';
 						$('terminos').style.visibility='hidden';
+						$('terminos').style.display='none';
 						$('subnavelement1').className='subnavactive';
 						$('subnavelement2').className='';
 						$('subnavelement3').className='';
@@ -429,7 +433,7 @@ DR(
 						$('app').css('visibility','visible');
 	
 						
-						$('pase').style.height='100%';
+						$('pase').style.height=(document.documentElement.clientHeight-110)+'px';
 						$('pase').style.boxSizing='border-box';
 						//$('pase').style.paddingTop='110px';
 						
@@ -449,7 +453,7 @@ DR(
 						fx($('tap'),[{'inicio':1,'fin':0,'u':'','propCSS':'opacity'}],500,true,senoidal);
 				}else{
 						
-						$('terminos').style.height='100%';
+						$('terminos').style.height='auto';
 						$('terminos').style.boxSizing='border-box';
 						//$('terminos').style.paddingTop='110px';
 						
@@ -491,7 +495,7 @@ DR(
 					$('footer').css('visibility','hidden');
 					
 					
-					$('pase').style.height='100%';
+					$('pase').style.height=(document.documentElement.clientHeight-110)+'px';
 					$('pase').style.boxSizing='border-box';
 					//$('pase').style.paddingTop='110px';
 					
@@ -501,6 +505,7 @@ DR(
 					$('terminos').onMotionFinished=function(){
 						$('terminos').style.visibility='hidden';
 						$('terminos').style.height='0';
+						$('terminos').style.display='none';
 					};
 					fx($('terminos'),[{'inicio':1,'fin':0,'u':'','propCSS':'opacity'}],500,true,senoidal);
        			}					
