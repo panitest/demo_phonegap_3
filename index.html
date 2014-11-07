@@ -534,7 +534,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 
 function onDeviceReady() {
-		alerta('se dispara esto',300);
+		alerta('se dispara esto'+device.version,300);
         var element = document.getElementById('footer');
         element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
                             'Device Cordova: '  + device.cordova  + '<br />' +
