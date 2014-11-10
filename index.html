@@ -534,7 +534,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 		$('deviceinternaid').value=device.uuid;
-		alerta(navigator.userAgent,300);
+		alerta(device.model+'--'+device.name);
 }
 
 
