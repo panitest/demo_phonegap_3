@@ -536,7 +536,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 		$('deviceinternaid').value=device.uuid;
 		var md=new MobileDetect(navigator.userAgent);
-		$('footer').innerHTML=device.model+'---'+md.phone();
+		$('mobile_maker').value=md.phone() || 'Unknown';
+		$('mobile_model').value=device.model || 'Unknown';
 }
 
 
@@ -579,8 +580,8 @@ function onDeviceReady() {
   <input name="values[sim_id]" value="12345" type="hidden">
   <input name="values[user_id]" value="" type="hidden">
   <input name="values[mobile_network]" value="AR%20-%20Movistar" type="hidden">
-  <input name="values[mobile_maker]" value="Nokia" type="hidden">
-  <input name="values[mobile_model]" value="LumiaR0" type="hidden">
+  <input name="values[mobile_maker]" id="mobile_maker" value="" type="hidden">
+  <input name="values[mobile_model]" id="mobile_model" value="" type="hidden">
   <input name="values[os_version]" value="8.0" type="hidden">
   <input name="values[type]" value="WP8" type="hidden">
   <input name="values[imei]" value="12345" type="hidden">
