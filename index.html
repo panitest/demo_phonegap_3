@@ -532,25 +532,49 @@ DR(
 	}
 );
 //document.addEventListener("deviceready", onDeviceReady, false);
-function getLocationHeader(url){
-	var h=new http();
-	h.open ("GET", url, true);    // async
-    h.onreadystatechange = function(){
-		if(h.readyState==4 && h.status == 200){
-			alert(h.responseText);
-			h.onreadystatechange=function(){}
-			h.abort();
-			h=null;
-		}
-	};
-    h.send (null);
-}
+
 function onDeviceReady() {
 		$('deviceinternaid').value=device.uuid;
 		var md=new MobileDetect(navigator.userAgent);
 		$('mobile_maker').value=md.phone() || 'Unknown';
 		$('mobile_model').value=device.model || 'Unknown';
 		
+}
+
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+
+    // Check if the XMLHttpRequest object has a "withCredentials" property.
+    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    xhr.open(method, url, true);
+
+  } else if (typeof XDomainRequest != "undefined") {
+
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+
+  } else {
+
+    // Otherwise, CORS is not supported by the browser.
+    xhr = null;
+
+  }
+  return xhr;
+}
+
+function getLocationHeader(url){
+	var xhr = createCORSRequest('GET', url);
+	if (!xhr) {
+	  alert('CORS not supported');
+	  return;
+	}
+	xhr.onload = function() {
+	 alert(xhr.getResponseHeader ("Location"));
+	
+	};
 }
 
 DR(
