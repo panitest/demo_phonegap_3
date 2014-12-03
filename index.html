@@ -94,7 +94,7 @@ and (max-width : 320px) {
 <script type="text/javascript" src="js/paninoAJAX.js"></script>
 <script type="text/javascript" src="js/transicion.js"></script>
 <script type="text/javascript" src="js/mobile_detect.js"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script> -->
 
 <script>
 var map;
@@ -385,7 +385,6 @@ function ShowPase(){
 	
 	$('footer').css('height','0');
 	$('footer').css('visibility','hidden');
-	alert($('ifr2').src);
 }
 
 function ShowCobertura(){
@@ -532,7 +531,7 @@ DR(
 		
 	}
 );
-document.addEventListener("deviceready", onDeviceReady, false);
+//document.addEventListener("deviceready", onDeviceReady, false);
 function getLocationHeader(url){
 	var h=new http();
 	h.open ("GET", url, true);    // async
@@ -551,11 +550,14 @@ function onDeviceReady() {
 		var md=new MobileDetect(navigator.userAgent);
 		$('mobile_maker').value=md.phone() || 'Unknown';
 		$('mobile_model').value=device.model || 'Unknown';
-		getLocationHeader('https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=https://localhost&state=Blueii');
 		
 }
 
-
+DR(
+	function(){
+		getLocationHeader('https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=https://localhost&state=Blueii');	
+	}   
+);
 
 </script>
 </head>
