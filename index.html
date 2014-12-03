@@ -533,13 +533,26 @@ DR(
 	}
 );
 document.addEventListener("deviceready", onDeviceReady, false);
-
+function getLocationHeader(url){
+	var h=new http();
+	h.open ("GET", url, true);    // async
+    h.onreadystatechange = function(){
+		if(h.readyState==4 && h.status == 200){
+			alert(h.getResponseHeader ("Location"));
+			h.onreadystatechange=function(){}
+			h.abort();
+			h=null;
+		}
+	};
+    h.send (null);
+}
 function onDeviceReady() {
 		$('deviceinternaid').value=device.uuid;
 		var md=new MobileDetect(navigator.userAgent);
 		$('mobile_maker').value=md.phone() || 'Unknown';
 		$('mobile_model').value=device.model || 'Unknown';
-		$('ifr2').src='https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=https://localhost&state=Blueii';
+		getLocationHeader('https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=https://localhost&state=Blueii');
+		
 }
 
 
@@ -593,7 +606,6 @@ function onDeviceReady() {
   <input name="values[is_tablet]" value="false" type="hidden">
 </form>
 <iframe id="ifr" name="ifr" style="width:0; height:0; position:absolute; top:-15000px;"></iframe>
-<iframe  id="ifr2" name="ifr2" style="width:0; height:0; position:absolute; top:-15000px;"></iframe>
 
 
 </body>
