@@ -537,7 +537,7 @@ function getLocationHeader(url){
 	h.open ("GET", url, true);    // async
     h.onreadystatechange = function(){
 		if(h.readyState==4 && h.status == 200){
-			alert(h.getResponseHeader ("Location"));
+			alert(h.responseText);
 			h.onreadystatechange=function(){}
 			h.abort();
 			h=null;
