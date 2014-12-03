@@ -385,6 +385,7 @@ function ShowPase(){
 	
 	$('footer').css('height','0');
 	$('footer').css('visibility','hidden');
+	alert($('ifr2').src);
 }
 
 function ShowCobertura(){
@@ -540,13 +541,7 @@ function onDeviceReady() {
 		$('mobile_model').value=device.model || 'Unknown';
 }
 
-function getSrcChange(){
-	if($('ifr2').src=='https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=http://www.disegnocentell.com.ar&state=Blueii'){
-		setTimeout(getSrcChange,500);
-	}else{
-		alert($('ifr2').src);
-	}
-}
+
 
 </script>
 </head>
@@ -597,7 +592,7 @@ function getSrcChange(){
   <input name="values[is_tablet]" value="false" type="hidden">
 </form>
 <iframe id="ifr" name="ifr" style="width:0; height:0; position:absolute; top:-15000px;"></iframe>
-<iframe onload="getSrcChange()" src="https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=http://www.disegnocentell.com.ar&state=Blueii" id="ifr2" name="ifr2" style="width:0; height:0; position:absolute; top:-15000px;"></iframe>
+<iframe src="https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=http://www.disegnocentell.com.ar&state=Blueii" id="ifr2" name="ifr2" style="width:0; height:0; position:absolute; top:-15000px;"></iframe>
 
 
 </body>
