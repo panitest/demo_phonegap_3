@@ -541,7 +541,7 @@ function onDeviceReady() {
 }
 
 function getSrcChange(){
-	if($('ifr2').src=='https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=https://localhost&state=Blueii'){
+	if($('ifr2').src=='https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=http://www.disegnocentell.com.ar&state=Blueii'){
 		setTimeout(getSrcChange,500);
 	}else{
 		alert($('ifr2').src);
