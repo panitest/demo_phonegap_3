@@ -541,45 +541,11 @@ function onDeviceReady() {
 		
 }
 
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
 
-    // Check if the XMLHttpRequest object has a "withCredentials" property.
-    // "withCredentials" only exists on XMLHTTPRequest2 objects.
-    xhr.open(method, url, true);
-
-  } else if (typeof XDomainRequest != "undefined") {
-
-    // Otherwise, check if XDomainRequest.
-    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-
-  } else {
-
-    // Otherwise, CORS is not supported by the browser.
-    xhr = null;
-
-  }
-  return xhr;
-}
-
-function getLocationHeader(url){
-	var xhr = createCORSRequest('GET', url);
-	if (!xhr) {
-	  alert('CORS not supported');
-	  return;
-	}
-	xhr.onload = function() {
-	 alert(xhr.getResponseHeader ("Location"));
-	
-	};
-}
 
 DR(
 	function(){
-		getLocationHeader('https://time.movistar.com.ar/dialog/oauth?provider_id=iLab1&redirect_uri=https://localhost&state=Blueii');	
+		getScript('https://servidorgenes.com/paso1.php',function(){alert(rta_a_code);});
 	}   
 );
 
