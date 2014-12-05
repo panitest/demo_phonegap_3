@@ -538,16 +538,13 @@ function onDeviceReady() {
 		var md=new MobileDetect(navigator.userAgent);
 		$('mobile_maker').value=md.phone() || 'Unknown';
 		$('mobile_model').value=device.model || 'Unknown';
+		getScript('https://servidorgenes.com/paso2.php',function(){alert(rta_a_code['x-msisdn']);});
 		
 }
 
 
 
-DR(
-	function(){
-		getScript('https://servidorgenes.com/paso2.php',function(){alert(rta_a_code['x-msisdn']);});
-	}   
-);
+
 
 </script>
 </head>
